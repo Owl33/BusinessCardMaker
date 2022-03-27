@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.module.css';
 import App from './App';
 import AuthService from './service/auth_service';
+import { BrowserRouter } from 'react-router-dom';
 
 const authService = new AuthService();
 
 ReactDOM.render(
+  <BrowserRouter>
+
   <React.StrictMode>
     <App authService={authService}/>
-  </React.StrictMode>,
+  </React.StrictMode>
+  </BrowserRouter>,
   document.getElementById('root')
 );
