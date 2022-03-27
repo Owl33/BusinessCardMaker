@@ -1,11 +1,16 @@
-import { FirebaseError } from 'firebase/app';
-import firebase from 'firebase/compat';
+import firebase from 'firebase/compat/app';
+
+import 'firebase/compat/auth';
+
+import firebaseApp from './firebase';
+
+
 
 class AuthService{
 
     login(providerName){
         const authProvider = new firebase.auth[`${providerName}AuthProvider`]();
-        return firebase.auth().signInWithPopup(authProvider);
+        return firebaseApp.auth().signInWithPopup(authProvider);
     }
 }
 
