@@ -7,19 +7,17 @@ import styles from "./login.module.css";
 const Login = ({ authService }) => {
   const navigate = useNavigate();
   const goToMaker = (userId) => {
-    console.log(userId);
-    navigate({
-      pathname: "/maker",
+    navigate("/maker", {
       state: { id: userId },
     });
   };
-
-  const onLogin = (event) => {
+  function onLogin(event) {
     authService //
+
       .login(event.currentTarget.textContent)
-      //   .then((data) => goToMaker(data.user.uid));
       .then((data) => goToMaker(data.user.uid));
-  };
+  }
+
   useEffect(() => {
     authService.onAuthChange((user) => {
       user && goToMaker(user.id);

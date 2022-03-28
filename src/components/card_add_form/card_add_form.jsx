@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { memo, useCallback, useRef, useState } from "react";
 import styles from "./card_add_form.module.css";
 import Button from "../button/button";
 
-const CardAddForm = ({ FileInput, onAdd }) => {
+const CardAddForm = memo(({ FileInput, onAdd }) => {
   const formRef = useRef();
   const nameRef = useRef();
   const companyRef = useRef();
@@ -15,7 +15,6 @@ const CardAddForm = ({ FileInput, onAdd }) => {
     fileName: null,
     fileURL: null,
   });
-
   const onFileChange = (file) => {
     setFile({
       fileName: file.name,
@@ -66,9 +65,9 @@ const CardAddForm = ({ FileInput, onAdd }) => {
         name="theme"
         placeholder="Theme"
       >
-        <option placeholder="light">light</option>
-        <option placeholder="dark">dark</option>
-        <option placeholder="colorful">colorful</option>
+        <option placeholder="Light">Light</option>
+        <option placeholder="Dark">Dark</option>
+        <option placeholder="Colorful">Colorful</option>
       </select>
       <input
         ref={titleRef}
@@ -96,6 +95,6 @@ const CardAddForm = ({ FileInput, onAdd }) => {
       <Button name="Add" onClick={onSubmit} />
     </form>
   );
-};
+});
 
 export default CardAddForm;

@@ -1,16 +1,15 @@
-import React, { useRef } from "react";
+import React, { memo, useRef } from "react";
 import styles from "./card_editor.module.css";
 import Button from "../button/button";
 
-const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
+const CardEditForm = memo(({ FileInput, card, updateCard, deleteCard }) => {
   const nameRef = useRef();
   const companyRef = useRef();
   const themeRef = useRef();
   const titleRef = useRef();
   const emailRef = useRef();
   const messageRef = useRef();
-  const { name, company, title, email, message, theme, fileName, fileURL } =
-    card;
+  const { name, company, title, email, message, theme, fileName } = card;
   const onSubmit = (event) => {
     deleteCard(card);
   };
@@ -26,7 +25,6 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
       return;
     }
     event.preventDefault();
-    console.log(event.currentTarget);
     updateCard({
       ...card,
       [event.currentTarget.name]: event.currentTarget.value,
@@ -57,9 +55,9 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         ref={themeRef}
         onChange={onChange}
       >
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-        <option value="colorful">Colorful</option>
+        <option value="Light">Light</option>
+        <option value="Dark">Dark</option>
+        <option value="Colorful">Colorful</option>
       </select>
       <input
         className={styles.input}
@@ -85,11 +83,11 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         onChange={onChange}
       />
       <div className={styles.fileInput}>
-        <FileInput name={name} onFileChange={onFileChange} />
+        <FileInput name={fileName} onFileChange={onFileChange} />
       </div>
       <Button name="Delete" onClick={onSubmit} />
     </form>
   );
-};
+});
 
 export default CardEditForm;
